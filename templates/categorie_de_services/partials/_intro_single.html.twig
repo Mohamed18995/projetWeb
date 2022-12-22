@@ -19,6 +19,17 @@
               </ol>
             </nav>
           </div>
+          <div class="example-wrapper">
+            <ul>
+              {% for categorie in categories %}
+                <a href="#">
+                <h2>{{categorie.nom}}</h2>
+                <p>{{categorie.description}}</p>
+                </a>
+              {% endfor%}
+            </ul>
+        
+    </div>
         </div>
       </div>
     </section>

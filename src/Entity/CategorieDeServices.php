@@ -5,8 +5,12 @@ namespace App\Entity;
 use App\Repository\CategorieDeServicesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: CategorieDeServicesRepository::class)]
+/** *@ORM\Table(name="categorie") */
+#[UniqueEntity("nom")]
 class CategorieDeServices
 {
     #[ORM\Id]
@@ -15,9 +19,14 @@ class CategorieDeServices
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min:4)]
+
     private ?string $nom = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min:16)]
     private ?string $description = null;
 
     #[ORM\Column]
