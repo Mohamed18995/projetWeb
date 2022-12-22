@@ -1,48 +1,58 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        <link rel="stylesheet" href="https://bootswatch.com/5/united/bootstrap.min.css">
-        <link rel="stylesheet" href="{{asset('css/app.css')}}">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="description">
+        <meta content="" name="keywords">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+        <title>{% block title %}Mon Site{% endblock %}</title>
+
+        {# Favicons #}
+        <link href="assets/img/favicon.png" rel="icon">
+        <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+        {# Google Fonts #}
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+        
+        {% block stylesheets %}
+            {#{{ encore_entry_link_tags('app') }}#}
+            {# Vendor CSS Files #}
+            <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+            <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+            <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+            <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+            
+             {# Template Main CSS File #}
+            <link href="assets/css/style.css" rel="stylesheet">
         {% endblock %}
     </head>
     <body>
-       <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Mon Site</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarColor01">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href={{path('app_home')}}>Home
-                            <span class="visually-hidden">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href= {{path('app_registration')}}>Se connecter</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Se déconnecter</a>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-sm-2" type="search" placeholder="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-     </nav>
+        {# Search #}
+        {{ include('layouts/partials/_search.html.twig')}}
+
+        {# Navigation #}
+        {{ include('layouts/partials/_nav.html.twig')}}
+
         {% block body %}{% endblock %}
+
+        {# footer #}
+        {{ include('layouts/partials/_footer.html.twig')}}
+
+        {# Back to top #}
+        {{ include('layouts/partials/_back_to_top.html.twig')}}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+
+            {# Vendor JS Files #}
+            <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+            <script src="assets/vendor/php-email-form/validate.js"></script>
+
+            {# Template Main JS File #}
+            <script src="assets/js/main.js"></script>
+
+        {% endblock %}
     </body>
 </html>
